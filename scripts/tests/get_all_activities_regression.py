@@ -2,10 +2,11 @@ import os
 import sys
 import unittest
 
-SCRIPT_DIR = os.path.join(os.path.dirname(__file__), "..", "..")
-sys.path.append(os.path.abspath(SCRIPT_DIR))
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+sys.path.append(ROOT_DIR)
+sys.path.append(os.path.join(ROOT_DIR, "scripts"))
 
-from coros.coros_client import CorosClient
+from scripts.coros.coros_client import CorosClient
 
 
 class CorosClientGetAllActivitiesTest(unittest.TestCase):
