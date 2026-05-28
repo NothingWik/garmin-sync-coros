@@ -120,7 +120,7 @@ class CorosClient:
         if isinstance(dataList, list):
           all_activities.extend(dataList)
         totalPage = data.get('totalPage')
-        if totalPage == None:
+        if totalPage is None:
           return all_activities
         if totalPage <= page:
           return all_activities
