@@ -113,10 +113,16 @@ class CorosClient:
       page = 1
       while(True):
         activities = self.getActivities(size, page)
-        totalPage = activities['data']['totalPage']
-        if totalPage >= page:
-          all_activities.extend(activities['data']['dataList'])
-        else:
+        data = activities.get('data') if isinstance(activities, dict) else None
+        if not isinstance(data, dict):
+          return all_activities
+        dataList = data.get('dataList')
+        if isinstance(dataList, list):
+          all_activities.extend(dataList)
+        totalPage = data.get('totalPage')
+        if totalPage is None:
+          return all_activities
+        if totalPage <= page:
           return all_activities
         page += 1
     
